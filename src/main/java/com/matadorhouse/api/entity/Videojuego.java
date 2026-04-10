@@ -7,28 +7,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Table(name = "videojuegos")
-@Data // Magia de Lombok: nos ahorra escribir todos los getters y setters a mano
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Videojuego {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Llave primaria autoincremental
+    private Long id;
 
     @Column(nullable = false)
     private String titulo;
 
     @Column(nullable = false)
-    private String consola; // Ej: "PS4", "PS5"
+    private String consola;
 
     private String genero;
 
-    /** Ej: PSN Plus, Acción, Deportes — para filtros en el catálogo */
     private String categoria;
 
     @Column(columnDefinition = "TEXT")
@@ -37,10 +37,22 @@ public class Videojuego {
     private String imagenUrl;
 
     @Column(nullable = false)
-    private BigDecimal precioPrincipal; // Precio para cuenta principal
+    private BigDecimal precioPrincipal;
 
     @Column(nullable = false)
-    private BigDecimal precioSecundaria; // Precio para cuenta secundaria
+    private BigDecimal precioSecundaria;
+
+    @Column(nullable = true)
+    private BigDecimal precioOfertaPrincipal;
+
+    @Column(nullable = true)
+    private BigDecimal precioOfertaSecundaria;
+
+    @Column(nullable = true)
+    private LocalDate ofertaDesde;
+
+    @Column(nullable = true)
+    private LocalDate ofertaHasta;
 
     private Integer pesoGb;
 

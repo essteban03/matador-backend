@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/videojuegos")
-@CrossOrigin(origins = "https://matador-house.vercel.app")
 public class VideojuegoController {
 
     private final VideojuegoRepository videojuegoRepository;
@@ -68,6 +67,10 @@ public class VideojuegoController {
         v.setImagenUrl(body.getImagenUrl());
         v.setPrecioPrincipal(body.getPrecioPrincipal());
         v.setPrecioSecundaria(body.getPrecioSecundaria());
+        v.setPrecioOfertaPrincipal(body.getPrecioOfertaPrincipal());
+        v.setPrecioOfertaSecundaria(body.getPrecioOfertaSecundaria());
+        v.setOfertaDesde(body.getOfertaDesde());
+        v.setOfertaHasta(body.getOfertaHasta());
         v.setPesoGb(body.getPesoGb());
         v.setEnStock(body.isEnStock());
         Videojuego guardado = videojuegoRepository.save(v);
