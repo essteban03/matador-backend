@@ -14,4 +14,6 @@ WORKDIR /app
 COPY --from=build /build/target/*.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Render a veces no tiene ruta IPv6; db.*.supabase.co puede resolver solo a IPv6 y falla con
+# "Network is unreachable". Forzar IPv4 en la JVM suele arreglarlo sin cambiar de host.
+ENTRYPOINT ["java", "-Djava.net.preferIPv4Stack=true", "-jar", "app.jar"]
